@@ -6,12 +6,10 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody rbody; // variable to hold a reference to our rigidbody
 	public float moveSpeed;
 
-	//public GameObject testChild;
-
-	// Use this for initialization
 	void Start () {
 		rbody = GetComponent<Rigidbody>();
 		Cursor.visible = false;
+		Screen.lockCursor = true; // Locks cursor to game screen (Esc key to exit).
 	}
 
 	// FixedUpdate is called once per physics frame, at a fixed framerate
@@ -24,9 +22,5 @@ public class PlayerController : MonoBehaviour {
 		rbody.velocity = transform.up * mouseY * moveSpeed // forward and back movement
 			+ transform.right * mouseX * moveSpeed; // left and right movement
 			//+ Physics.gravity; // always apply gravity
-	
-		/*if ( Input.GetKeyDown(KeyCode.Space) ){
-			testChild.transform.SetParent (this.transform);
-		}*/
 	}
 }
