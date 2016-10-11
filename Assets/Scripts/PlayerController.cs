@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 		rbody = GetComponent<Rigidbody>();
 		Cursor.visible = false;
 		Screen.lockCursor = true; // Locks cursor to game screen (Esc key to exit).
+		//Cursor.lockState = true;
+		//Cursor.visible = false;
 	}
 
 	// FixedUpdate is called once per physics frame, at a fixed framerate

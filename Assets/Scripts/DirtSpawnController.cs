@@ -6,10 +6,10 @@ public class DirtSpawnController : MonoBehaviour {
 	public GameObject dirtPrefab;
 	Vector3 pos;
 	bool instantiate = false;
-	int prefabLimit = 80;
+	public int prefabLimit;
 	int prefabCounter;
 	float timer = 0f;
-	float timeLimit = .2f;
+	public float timeLimit;
 
 	void OnTriggerEnter(Collider col) {
 		if (col.name == ("DirtSpawnerTrigger")) {
