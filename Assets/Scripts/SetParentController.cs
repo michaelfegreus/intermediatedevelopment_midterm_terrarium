@@ -4,6 +4,7 @@ using System.Collections;
 public class SetParentController : MonoBehaviour {
 
 	Rigidbody rb;
+	bool clicked;
 
 	void OnTriggerStay(Collider col) {
 		//Debug.Log ("Trigger detected.");
@@ -32,6 +33,7 @@ public class SetParentController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
+		clicked = false;
 	}
 	
 	// Update is called once per frame
@@ -43,5 +45,8 @@ public class SetParentController : MonoBehaviour {
 				this.transform.parent = null;
 			}
 		}*/
+		if ( Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)){
+			clicked = true;
+		}
 	}
 }
