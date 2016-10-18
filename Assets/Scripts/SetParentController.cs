@@ -4,49 +4,37 @@ using System.Collections;
 public class SetParentController : MonoBehaviour {
 
 	Rigidbody rb;
-	bool clicked;
+	bool inPickupTrigger;
+	GameObject player;
 
-	void OnTriggerStay(Collider col) {
-		//Debug.Log ("Trigger detected.");
-		if ( Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) ){
-			if ((rb.isKinematic) || (transform.parent != null)){ //Puts down if already holding this object
-				rb.isKinematic = false;
-				this.transform.parent = null;
-				Physics.IgnoreCollision(col.GetComponent<Collider>(), GetComponent<Collider>(), false); // Enables Player tweezers and item collisions again.
-			} else {
-				rb.isKinematic = true; //Picks up if not holding this object
-				this.transform.parent = GameObject.Find ("Player").transform;
-				Physics.IgnoreCollision(col.GetComponent<Collider>(), GetComponent<Collider>()); // Prevents Player tweezers from colliding with the items and preventing movement.
-				/*if(this.name == ("Dirtbag")){
-					transform.rotation = Quaternion.identity;
-				}*/
-			}
+	void OnTriggerEnter(Collider col) {
+		if (col.name == ("PickupTrigger")) {
+			inPickupTrigger = true;
 		}
 	}
-
-	/*void OnTriggerExit(Collider col){
-		rb.isKinematic = false;
-		this.transform.parent = null;
-		Physics.IgnoreCollision(col.GetComponent<Collider>(), GetComponent<Collider>(), false);
-	}*/
-
-	// Use this for initialization
+	void OnTriggerExit(Collider col) {
+		if (col.name == ("PickupTrigger")) {
+			inPickupTrigger = false;
+		}
+	}
+		
 	void Start () {
 		rb = GetComponent<Rigidbody>();
-		clicked = false;
+		inPickupTrigger = false;
+		player = GameObject.Find ("Player");
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-		/*if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Mouse0)) {
+		if ( Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)){
 			if (transform.parent != null) {
 				rb.isKinematic = false;
-				Physics.IgnoreCollision (transform.parent.GetComponent<Collider> (), GetComponent<Collider> (), false);
 				this.transform.parent = null;
+				Physics.IgnoreCollision (player.GetComponent<Collider> (), GetComponent<Collider> (), false);
+			} else if ((transform.parent == null) && (inPickupTrigger)){
+				rb.isKinematic = true;
+				this.transform.parent = GameObject.Find ("PickupTrigger").transform;
+				Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
 			}
-		}*/
-		if ( Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)){
-			clicked = true;
 		}
 	}
 }
