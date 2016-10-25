@@ -30,7 +30,9 @@ public class WaterParticleController : MonoBehaviour {
 
 	void Update () {
 		if (playing) {
-			waterTimer = waterTimer + Time.deltaTime;
+			if (waterTimer < 10) {
+				waterTimer = waterTimer + Time.deltaTime;
+			}
 		}
 		//Debug.Log (waterTimer);
 	}
