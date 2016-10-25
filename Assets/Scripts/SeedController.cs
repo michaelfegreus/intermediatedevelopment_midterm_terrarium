@@ -16,6 +16,9 @@ public class SeedController : MonoBehaviour {
 
 	public Material black;
 
+	public GameObject camera;
+	MainCameraController mcc;
+
 	public void dirtTrigger(){
 		dirtDrown = true;
 	}
@@ -34,6 +37,7 @@ public class SeedController : MonoBehaviour {
 			Debug.Log ("Plant lives");
 			pos = new Vector3 (transform.position.x, transform.position.y, 0);
 			Instantiate (plantPrefab, pos, Quaternion.identity);
+			mcc.end ();
 			Destroy (gameObject);
 		} else {
 			Debug.Log ("Plant dies");
@@ -62,7 +66,7 @@ public class SeedController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		mcc = camera.GetComponent<MainCameraController> ();
 	}
 	
 	// Update is called once per frame

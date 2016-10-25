@@ -4,7 +4,7 @@ using System.Collections;
 public class PlantParentController : MonoBehaviour {
 
 	Vector3 startScale = new Vector3 (0.0008f, 0.001f, 0.001f);
-	Vector3 targetScale = new Vector3 (.6f, .8f, .8f);
+	Vector3 targetScale = new Vector3 (1f, .8f, .8f);
 	float speed = .03f;
 	float startTime;
 	float journeyLength;
