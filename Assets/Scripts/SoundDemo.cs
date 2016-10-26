@@ -12,11 +12,5 @@ public class SoundDemo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			/*if (myAudioSource.isPlaying == false) {
-				myAudioSource.Play ();
-			}*/
-			myAudioSource.PlayOneShot (myAudioSource.clip); // Plays a new instance of the sound each space bar. Does not interrupt.
-		}
 	}
 }

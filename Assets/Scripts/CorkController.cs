@@ -7,6 +7,9 @@ public class CorkController : MonoBehaviour {
 	public GameObject seed;
 	SeedController sc;
 
+	public GameObject corkLock;
+	//Vector3 lockPos;
+
 	void OnTriggerEnter(Collider col){
 		if (col.name == ("CorkTrigger")) {
 			inTrigger = true;
@@ -29,11 +32,15 @@ public class CorkController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (inTrigger && Input.GetKey (KeyCode.Space) && transform.parent || inTrigger && Input.GetKeyDown (KeyCode.Mouse0)) {
-			sc.corkTrigger (true);
-			/*if (transform.parent != null) {
+		if (inTrigger) {
+			if (Input.GetKey (KeyCode.Space) || Input.GetKeyDown (KeyCode.Mouse0)) {
+				sc.corkTrigger (true);
+				corkLock.GetComponent<Renderer> ().enabled = true;
+				Destroy (gameObject);
+				/*if (transform.parent != null) {
 				transform.parent = null;
 			}*/
+			}
 		}
 	}
 }

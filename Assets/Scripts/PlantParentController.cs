@@ -18,6 +18,10 @@ public class PlantParentController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown (KeyCode.R)) {
+			transform.localScale = startScale;
+			startTime = 0f;
+		}
 		float distCovered = (Time.time - startTime) * speed;
 		float fracJourney = distCovered / journeyLength;
 		transform.localScale = Vector3.Lerp (startScale, targetScale, fracJourney);

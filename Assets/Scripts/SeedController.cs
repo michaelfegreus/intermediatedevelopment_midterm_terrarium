@@ -41,6 +41,7 @@ public class SeedController : MonoBehaviour {
 			Destroy (gameObject);
 		} else {
 			Debug.Log ("Plant dies");
+			mcc.end ();
 			GetComponent<Renderer> ().material = black;
 			GameObject.Find ("SeedLeaf").GetComponent<Renderer> ().material = black;
 		}
@@ -77,7 +78,7 @@ public class SeedController : MonoBehaviour {
 		} else if (7f < WaterParticleController.waterTimer) {
 			waterDrown = true;
 		}
-		if (corkSatisfied && inJar) {
+		if (corkSatisfied && transform.parent == null) {
 			growingPhase ();
 		}
 	}
